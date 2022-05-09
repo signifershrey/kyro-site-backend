@@ -1,27 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const Employee = require('../models/employee')
+const multer = require('multer');
 
-
-router.post('/employeeregister' , function (req,res) {
-   
-  const form = new formidable.IncomingForm();
-
-  form.parse(req, (err,fields, file) => {I
-    console.log(fields)
-    console.log(file)
+var fileStorageEngine = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './resumes')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "--" + file.originalname)
+  }
 })
 
-    
+const upload = multer({ storage: fileStorageEngine })
+
+
+router.post('/employeeregister' , upload.single('resume'), function (req,res) {
+  
+   console.log(req.file);
+
     const user = new Employee({
         categoryOfAgent : req.body.categoryOfAgent,
         name: req.body.name,
         email: req.body.email,
         contact: req.body.contact,
-        // uploadresume: {
-        //   data: req.file.filename,
-        //   contentType: 'image/png'
-        // }
+        position: req.body.position,
+        salary: req.body.salary,
+        resume: req.body.resume
     })
     
 

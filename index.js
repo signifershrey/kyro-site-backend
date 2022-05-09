@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 })
 
+app.use(express.static('public'));
 app.use(userRoute)
 app.use(clientRoute);
 app.use(employeeRoute);

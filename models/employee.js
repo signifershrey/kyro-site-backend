@@ -35,6 +35,14 @@ const employeeSchema = new Schema({
       message: "{VALUE} is not a valid email!",
     },
   },
+  position: {
+        type: String,
+        required :true
+  },
+  salary:{
+    type: Number,
+    required:true
+  },
   resume :{
         data: Buffer,
         contentType : String

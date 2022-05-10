@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const userRoute = require('./route/user')
 const clientRoute = require('./route/client')
 const employeeRoute = require('./route/employee')
+const contactRoute = require('./route/contactus')
 const cors = require('cors')
 
 
@@ -45,6 +46,7 @@ app.use(express.static('public'));
 app.use(userRoute)
 app.use(clientRoute);
 app.use(employeeRoute);
+app.use(contactRoute);
 
 
 app.listen(PORT, () => {

@@ -43,10 +43,10 @@ const employeeSchema = new Schema({
     type: Number,
     required:true
   },
-  resume :{
-        data: Buffer,
-        contentType : String
-  },
+  // resume :{
+  //       data: Buffer,
+  //       contentType : String
+  // },
   created: {
     type: Date,
     default: Date.now,

@@ -1,21 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Employee = require('../models/employee')
-const multer = require('multer');
 
-var fileStorageEngine = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './resumes')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "--" + file.originalname)
-  }
-})
-
-const upload = multer({ storage: fileStorageEngine })
-
-
-router.post('/employeeregister' , upload.single('resume'), function (req,res) {
+router.post('/employeeregister' , function (req,res) {
   
    console.log(req.file);
 
@@ -26,7 +13,6 @@ router.post('/employeeregister' , upload.single('resume'), function (req,res) {
         contact: req.body.contact,
         position: req.body.position,
         salary: req.body.salary,
-        resume: req.body.resume
     })
     
 
